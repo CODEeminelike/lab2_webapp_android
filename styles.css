@@ -65,7 +65,30 @@ footer {
     color: white;
     text-align: center;
     padding: 1rem;
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    /* Bỏ position: fixed để footer nằm tự nhiên dưới nội dung */
+}
+
+/* Thêm padding-bottom cho main để tránh nội dung bị che bởi footer */
+main {
+    padding-bottom: 60px; /* Chiều cao footer + khoảng cách an toàn */
+}
+
+/* Đảm bảo footer luôn ở dưới cùng nếu nội dung ngắn */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
 }
