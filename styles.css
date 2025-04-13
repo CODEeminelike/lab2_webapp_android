@@ -1,0 +1,71 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+header {
+    background: #e74c3c;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.banner img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.intro {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Nút Đặt món */
+.btn-primary {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 1rem auto;
+    display: block;
+}
+
+.btn-primary:hover {
+    background: #c0392b;
+}
+
+/* Ẩn nút "Đặt món" trên desktop */
+.mobile-only {
+    display: none;
+}
+
+/* Hiển thị nút trên mobile */
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block;
+        text-align: center;
+        padding: 1rem;
+    }
+}
+
+footer {
+    background: #34495e;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
