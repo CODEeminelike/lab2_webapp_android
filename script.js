@@ -5,8 +5,8 @@
 
 // ==================== CẤU HÌNH ====================
 const APP_DEEP_LINK = 'foodordering://menu'; // Deep Link của app Android
-const WEB_FALLBACK_URL = 'https://nhahangabc.com/menu'; // URL dự phòng
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.example.foodordering'; // Link cài đặt app
+const WEB_FALLBACK_URL = 'https://www.youtube.com/'; // URL dự phòng
+const PLAY_STORE_URL = 'https://www.youtube.com/'; // Link cài đặt app
 
 // ==================== HÀM CHÍNH ====================
 
