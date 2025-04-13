@@ -5,7 +5,7 @@
 
 // ==================== CẤU HÌNH ====================
 const APP_DEEP_LINK = 'foodordering://menu'; // Deep Link của app Android
-const WEB_FALLBACK_URL = 'https://nhahangabc.com/menu'; // URL dự phòng khi không mở được app
+const WEB_FALLBACK_URL = 'https://nhahangabc.com/menu'; // URL dự phòng
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.example.foodordering'; // Link cài đặt app
 
 // ==================== HÀM CHÍNH ====================
@@ -23,23 +23,25 @@ function isMobileDevice() {
  */
 function openAppOrRedirect() {
     // 1. Thử mở app Android
+    const startTime = Date.now();
     window.location.href = APP_DEEP_LINK;
-    
-    // 2. Fallback sau 500ms nếu app không mở được
+
+    // 2. Fallback sau 1000ms nếu app không mở
     setTimeout(() => {
-        if (!document.hidden) {
+        // Kiểm tra thời gian để xác định app có mở hay không
+        if (Date.now() - startTime < 1200) {
             // Hiển thị dialog hỏi người dùng có muốn cài app không
             const shouldInstall = confirm(
                 'Bạn chưa cài đặt ứng dụng. Muốn tải về từ CH Play không?'
             );
-            
+
             if (shouldInstall) {
                 window.location.href = PLAY_STORE_URL;
             } else {
                 window.location.href = WEB_FALLBACK_URL;
             }
         }
-    }, 500);
+    }, 1000);
 }
 
 /**
@@ -47,14 +49,14 @@ function openAppOrRedirect() {
  */
 function initOrderButton() {
     const orderBtn = document.getElementById('orderBtn');
-    
+
     if (!orderBtn) return;
-    
+
     orderBtn.addEventListener('click', () => {
         if (isMobileDevice()) {
             openAppOrRedirect();
         } else {
-            // Nếu là desktop, chuyển thẳng đến web đặt món
+            // Desktop: Chuyển đến web đặt món
             window.location.href = WEB_FALLBACK_URL;
         }
     });
@@ -67,14 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (orderBtn) {
         orderBtn.style.display = isMobileDevice() ? 'block' : 'none';
     }
-    
+
     // Khởi tạo sự kiện
     initOrderButton();
 });
 
-// ==================== HỖ TRỢ PWA (NẾU CÓ) ====================
-// Kiểm tra xem có phải là PWA đang chạy không
+// ==================== HỖ TRỢ PWA ====================
 if (window.matchMedia('(display-mode: standalone)').matches) {
     console.log('Ứng dụng đang chạy ở chế độ PWA');
-    // Có thể thêm xử lý đặc biệt cho PWA ở đây
 }
